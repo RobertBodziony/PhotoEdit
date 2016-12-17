@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_take_from_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Import from Gallery" />
+        <item
+            android:id="@+id/nav_take_a_photo"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Take a photo" />
+        <item
+            android:id="@+id/nav_add_filter"
+            android:icon="@drawable/ic_menu_filter"
+            android:title="Add Filter" />
+        <item
+            android:id="@+id/nav_edit_photo"
+            android:icon="@drawable/ic_menu_edit"
+            android:title="Edit photo" />
+        <item
+            android:id="@+id/nav_save"
+            android:icon="@drawable/ic_sd_card_24dp"
+            android:title="Save" />
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

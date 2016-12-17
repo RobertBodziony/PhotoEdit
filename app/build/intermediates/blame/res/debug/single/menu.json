@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\ph_edit.xml",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\menu\\ph_edit.xml"
+    },
+    {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\menu\\activity_ph_edit_drawer.xml",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\menu\\activity_ph_edit_drawer.xml"
+    }
+]

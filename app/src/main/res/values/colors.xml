@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="gradientStart">#5a5b6c</color>
+    <color name="gradientCenter">#344951</color>
+    <color name="gradientEnd">#2c3e5f</color>
+    <color name="topBar">#26353b</color>
+    <color name="fragment_im">#26353b</color>
+    <color name="fragment_li">#26353b</color>
+</resources>

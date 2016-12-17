@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="pl_200204.wroc.pwr.student.photoedit.PhEDIT"
+    tools:showIn="@layout/app_bar_ph_edit">
+
+    <fragment
+        android:id="@+id/main_panel"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="pl_200204.wroc.pwr.student.photoedit.ImageFragment"
+        tools:layout="@layout/fragment_image" />
+
+    <fragment
+        android:id="@+id/side_panel"
+        android:layout_weight="5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="pl_200204.wroc.pwr.student.photoedit.ListFragment"
+        tools:layout="@layout/fragment_list" />
+
+</LinearLayout>
