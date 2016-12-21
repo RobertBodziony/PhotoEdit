@@ -1,5 +1,7 @@
 package pl_200204.wroc.pwr.student.photoedit;
 
+import android.content.Context;
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;

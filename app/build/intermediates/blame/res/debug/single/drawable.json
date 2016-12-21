@@ -8,10 +8,6 @@
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
-        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\logo.png",
-        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\drawable\\logo.png"
-    },
-    {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
     },
@@ -148,6 +144,10 @@
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_logo1.png",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\drawable\\ic_logo1.png"
+    },
+    {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\drawable\\abc_btn_radio_material.xml"
     },
@@ -170,6 +170,10 @@
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\lena.bmp",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\drawable\\lena.bmp"
     },
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_search_api_material.xml",

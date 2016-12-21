@@ -47,8 +47,8 @@
     <color name="dim_foreground_material_light">#ff323232</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
-    <color name="fragment_im">#26353b</color>
-    <color name="fragment_li">#26353b</color>
+    <color name="fragment_li">#828397</color>
+    <color name="fragment_li_b">#68697d</color>
     <color name="gradientCenter">#344951</color>
     <color name="gradientEnd">#2c3e5f</color>
     <color name="gradientStart">#5a5b6c</color>

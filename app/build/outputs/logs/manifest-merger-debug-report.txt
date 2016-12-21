@@ -45,7 +45,7 @@ MERGED from [com.android.support:support-compat:25.0.1] E:\ANDROID\PhotoEDIT\app
 	android:allowBackup
 		ADDED from E:\ANDROID\PhotoEDIT\app\src\main\AndroidManifest.xml:9:9-35
 	android:icon
-		ADDED from E:\ANDROID\PhotoEDIT\app\src\main\AndroidManifest.xml:10:9-39
+		ADDED from E:\ANDROID\PhotoEDIT\app\src\main\AndroidManifest.xml:10:9-40
 	android:theme
 		ADDED from E:\ANDROID\PhotoEDIT\app\src\main\AndroidManifest.xml:13:9-40
 activity#pl_200204.wroc.pwr.student.photoedit.PhEDIT

@@ -2,5 +2,9 @@
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_logo.png",
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_logo.png"
+    },
+    {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_logo1.png",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_logo1.png"
     }
 ]
