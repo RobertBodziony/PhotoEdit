@@ -94,6 +94,22 @@
                     android:layout_width="fill_parent"
                     android:adjustViewBounds="true">
                 </ImageView>
+
+                <ImageView android:id="@+id/scrollMenu11"
+                    android:src="@drawable/ic_logo1"
+                    android:isScrollContainer="true"
+                    android:layout_height="fill_parent"
+                    android:layout_width="fill_parent"
+                    android:adjustViewBounds="true">
+                </ImageView>
+
+                <ImageView android:id="@+id/scrollMenu12"
+                    android:src="@drawable/ic_logo1"
+                    android:isScrollContainer="true"
+                    android:layout_height="fill_parent"
+                    android:layout_width="fill_parent"
+                    android:adjustViewBounds="true">
+                </ImageView>
             </LinearLayout>
         </HorizontalScrollView>
 </LinearLayout>

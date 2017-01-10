@@ -8,12 +8,16 @@
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_text_input_password_icon.xml",
-        "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.0.1\\res\\layout\\design_text_input_password_icon.xml"
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_tools.xml",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\layout\\fragment_tools.xml"
     },
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_text_input_password_icon.xml",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.0.1\\res\\layout\\design_text_input_password_icon.xml"
     },
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
@@ -130,6 +134,10 @@
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
         "source": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.0.1\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_list2.xml",
+        "source": "E:\\ANDROID\\PhotoEDIT\\app\\src\\main\\res\\layout\\fragment_list2.xml"
     },
     {
         "merged": "E:\\ANDROID\\PhotoEDIT\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_menu_item_action_area.xml",

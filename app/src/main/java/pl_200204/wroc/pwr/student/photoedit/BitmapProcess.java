@@ -1,16 +1,11 @@
 package pl_200204.wroc.pwr.student.photoedit;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.graphics.Paint;
+import android.graphics.Rect;
 
 import java.util.Random;
 
@@ -160,7 +155,6 @@ public class BitmapProcess {
         final int    MAX_VALUE_INT = 255;
         final double REVERSE = 1.0;
 
-        // gamma arrays
         int[] gammaR = new int[MAX_SIZE];
         int[] gammaG = new int[MAX_SIZE];
         int[] gammaB = new int[MAX_SIZE];
@@ -169,7 +163,6 @@ public class BitmapProcess {
         src.getPixels(pixels, 0, width, 0, 0, width, height);
         int index = 0;
 
-        // setting values for every gamma channels
         for(int i = 0; i < MAX_SIZE; ++i) {
             gammaR[i] = (int)Math.min(MAX_VALUE_INT,
                     (int)((MAX_VALUE_DBL * Math.pow(i / MAX_VALUE_DBL, REVERSE / red)) + 0.5));
@@ -179,17 +172,13 @@ public class BitmapProcess {
                     (int)((MAX_VALUE_DBL * Math.pow(i / MAX_VALUE_DBL, REVERSE / blue)) + 0.5));
         }
 
-        // apply gamma table
         for(int x = 0; x < width; ++x) {
             for(int y = 0; y < height; ++y) {
-                // get pixel color
                 index = y * width + x;
                 A = Color.alpha(pixels[index]);
-                // look up gamma
                 R = gammaR[Color.red(pixels[index])];
                 G = gammaG[Color.green(pixels[index])];
                 B = gammaB[Color.blue(pixels[index])];
-                // set new color to output bitmap
                 pixels[index] = Color.argb(A, R, G, B);
             }
         }
@@ -266,5 +255,50 @@ public class BitmapProcess {
         edited = Bitmap.createBitmap(width, height, src.getConfig());
         edited.setPixels(pixels, 0, width, 0, 0, width, height);
         return edited;
+    }
+
+    public static Bitmap drawT(Bitmap src, int x, int y, String text, int size) {
+
+        int width = src.getWidth();
+        int height = src.getHeight();
+        int[] pixels = new int[width * height];
+        src.getPixels(pixels, 0, width, 0, 0, width, height);
+        edited = Bitmap.createBitmap(width, height, src.getConfig());
+        edited.setPixels(pixels, 0, width, 0, 0, width, height);
+        Canvas c = new Canvas(edited);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(6f);
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.YELLOW);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(size);
+        c.drawText(text,x,y,paint);
+        return edited;
+
+    }
+
+    public static Bitmap drawRectang(Bitmap src, float x, float y, int size) {
+
+        int width = src.getWidth();
+        int height = src.getHeight();
+        int[] pixels = new int[width * height];
+        src.getPixels(pixels, 0, width, 0, 0, width, height);
+        edited = Bitmap.createBitmap(width, height, src.getConfig());
+        edited.setPixels(pixels, 0, width, 0, 0, width, height);
+        Canvas c = new Canvas(edited);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setStrokeWidth(6f);
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.BLACK);
+        Rect rectangle = new Rect((int)x-50, (int)y+50, (int)x+50, (int)y-50);
+        c.drawRect(rectangle, paint);
+        return edited;
+
     }
 }

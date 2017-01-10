@@ -13,18 +13,26 @@
 
     <fragment
         android:id="@+id/main_panel"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         class="pl_200204.wroc.pwr.student.photoedit.ImageFragment"
         tools:layout="@layout/fragment_image" />
 
     <fragment
-        android:id="@+id/side_panel"
-        android:layout_weight="5"
+        android:id="@+id/tools_panel"
+        android:layout_weight="6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="pl_200204.wroc.pwr.student.photoedit.ListFragment"
-        tools:layout="@layout/fragment_list" />
+        class="pl_200204.wroc.pwr.student.photoedit.ToolsFragment"
+        tools:layout="@layout/fragment_tools" />
+
+        <fragment
+            android:id="@+id/side_panel"
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="pl_200204.wroc.pwr.student.photoedit.ListFragment"
+            tools:layout="@layout/fragment_list" />
 
 </LinearLayout>
