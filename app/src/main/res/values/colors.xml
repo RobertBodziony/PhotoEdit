@@ -9,4 +9,5 @@
     <color name="topBar">#26353b</color>
     <color name="fragment_li_b">#68697d</color>
     <color name="fragment_li">#828397</color>
+    <color name="color_components">#474747</color>
 </resources>

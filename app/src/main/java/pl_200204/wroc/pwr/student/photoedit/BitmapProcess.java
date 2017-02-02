@@ -13,6 +13,7 @@ public class BitmapProcess {
     private Bitmap orignial;
     private Bitmap scaled;
     public static Bitmap edited;
+    public static int nSize,nVal;
     int[] pixels;
     public static final int COLOR_MIN = 0x00;
     public static final int COLOR_MAX = 0xFF;
@@ -21,6 +22,8 @@ public class BitmapProcess {
         this.orignial = org;
         this.scaled = org;
         this.edited = scaled;
+        this.nSize = 25;
+        this.nVal = 25;
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
@@ -34,6 +37,7 @@ public class BitmapProcess {
                 bm, 0, 0, width, height, matrix, false);
         return edited;
     }
+
     public Bitmap getCropedBitmap(Bitmap bm) {
         Bitmap part = Bitmap.createBitmap(bm, 100, 100, 100, 100, null, true);
         return part;
@@ -46,7 +50,6 @@ public class BitmapProcess {
     public void setScaled(Bitmap scaled) {
         this.scaled = scaled;
     }
-
 
     public static Bitmap doGreyscale(Bitmap src) {
         final double GS_RED = 0.299;
@@ -120,7 +123,6 @@ public class BitmapProcess {
         edited.setPixels(pixels, 0, width, 0, 0, width, height);
         return edited;
     }
-
 
     public static Bitmap applyFleaEffect(Bitmap src) {
         int width = src.getWidth();
@@ -274,6 +276,11 @@ public class BitmapProcess {
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.YELLOW);
         paint.setColor(Color.BLACK);
+        if(nSize < 25 ) {
+            size = nSize * 2;
+        } else {
+            size = nSize;
+        }
         paint.setTextSize(size);
         c.drawText(text,x,y,paint);
         return edited;
@@ -296,9 +303,106 @@ public class BitmapProcess {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLACK);
-        Rect rectangle = new Rect((int)x-50, (int)y+50, (int)x+50, (int)y-50);
+        Rect rectangle = new Rect((int)x-nSize, (int)y+nSize, (int)x+nSize, (int)y-nSize);
         c.drawRect(rectangle, paint);
         return edited;
 
+    }
+
+    public static Bitmap doContrast(Bitmap src) {
+        int width = src.getWidth();
+        int height = src.getHeight();
+        int[] pixels = new int[width * height];
+        src.getPixels(pixels, 0, width, 0, 0, width, height);
+        int A, R, G, B;
+        int index = 0;
+        double contrast = Math.pow((100 + nVal) / 100, 2);
+
+        for(int x = 0; x < width; ++x) {
+            for(int y = 0; y < height; ++y) {
+                index = y * width + x;
+                A = Color.alpha(pixels[index]);
+
+                R = Color.red(pixels[index]);
+                R = (int)(((((R / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+                if(R < 0) { R = 0; }
+                else if(R > 255) { R = 255; }
+
+                G = Color.red(pixels[index]);
+                G = (int)(((((G / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+                if(G < 0) { G = 0; }
+                else if(G > 255) { G = 255; }
+
+                B = Color.red(pixels[index]);
+                B = (int)(((((B / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
+                if(B < 0) { B = 0; }
+                else if(B > 255) { B = 255; }
+
+                pixels[index] = Color.argb(A, R, G, B);
+            }
+        }
+        edited = Bitmap.createBitmap(width, height, src.getConfig());
+        edited.setPixels(pixels, 0, width, 0, 0, width, height);
+        return edited;
+    }
+
+    public static Bitmap doBrightness(Bitmap src) {
+        int width = src.getWidth();
+        int height = src.getHeight();
+        int[] pixels = new int[width * height];
+        src.getPixels(pixels, 0, width, 0, 0, width, height);
+        int A, R, G, B;
+        int index = 0;
+        for(int x = 0; x < width; ++x) {
+            for(int y = 0; y < height; ++y) {
+                index = y * width + x;
+                A = Color.alpha(pixels[index]);
+                R = Color.red(pixels[index]);
+                G = Color.green(pixels[index]);
+                B = Color.blue(pixels[index]);
+
+                R += nVal;
+                if(R > 255) { R = 255; }
+                else if(R < 0) { R = 0; }
+
+                G += nVal;
+                if(G > 255) { G = 255; }
+                else if(G < 0) { G = 0; }
+
+                B += nVal;
+                if(B > 255) { B = 255; }
+                else if(B < 0) { B = 0; }
+
+                pixels[index] = Color.argb(A, R, G, B);
+            }
+        }
+
+        edited = Bitmap.createBitmap(width, height, src.getConfig());
+        edited.setPixels(pixels, 0, width, 0, 0, width, height);
+        return edited;
+    }
+
+    public static Bitmap getEdited() {
+        return edited;
+    }
+
+    public static void setEdited(Bitmap edited) {
+        BitmapProcess.edited = edited;
+    }
+
+    public static int getnSize() {
+        return nSize;
+    }
+
+    public static void setnSize(int nSize) {
+        BitmapProcess.nSize = nSize;
+    }
+
+    public static int getnVal() {
+        return nVal;
+    }
+
+    public static void setnVal(int nVal) {
+        BitmapProcess.nVal = nVal;
     }
 }

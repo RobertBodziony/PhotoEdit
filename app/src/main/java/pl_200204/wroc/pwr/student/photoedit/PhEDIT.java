@@ -11,10 +11,13 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.*;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -25,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Toast;
 import android.content.Intent;
 import android.database.Cursor;
@@ -47,9 +51,11 @@ public class PhEDIT extends AppCompatActivity
     };
     public static final int PLEASE_WAIT_DIALOG = 1;
     ImageView scrollMenu1, scrollMenu2, scrollMenu3, scrollMenu4, scrollMenu5,
-            scrollMenu6, scrollMenu7, scrollMenu8, scrollMenu9, scrollMenu10, scrollMenu11, scrollMenu12;
+            scrollMenu6, scrollMenu7, scrollMenu8, scrollMenu9, scrollMenu10,
+            scrollMenu11, scrollMenu12, scrollMenu13, scrollMenu14;
+    SeekBar sizeSeekBar;
     String imgDecodableString, text="";
-    Boolean drawT = false, drawR = false;
+    Boolean drawT = false, drawR = false, brSelected = false, contSelected = false;
     BitmapProcess bitmapProcess;
     ImageView image;
     Bitmap bitmapSc;
@@ -69,6 +75,7 @@ public class PhEDIT extends AppCompatActivity
         image = (ImageView) findViewById(R.id.main_image_view);
         bitmapProcess = new BitmapProcess(((BitmapDrawable)image.getDrawable()).getBitmap());
         scrollMenu1 = (ImageView) findViewById(R.id.scrollMenu1);
+        sizeSeekBar = (SeekBar) findViewById(R.id.sizeSeekBar);
         new SetIcons(this).execute(bitmapProcess.getResizedBitmap(((BitmapDrawable)scrollMenu1.getDrawable()).getBitmap(),((BitmapDrawable)scrollMenu1.getDrawable()).getBitmap().getWidth()/4,((BitmapDrawable)scrollMenu1.getDrawable()).getBitmap().getHeight()/4));
         scrollMenu1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +85,6 @@ public class PhEDIT extends AppCompatActivity
                 image.setImageBitmap(bitmap);
             }
         });
-
 
         scrollMenu2 = (ImageView) findViewById(R.id.scrollMenu2);
         scrollMenu2.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +182,8 @@ public class PhEDIT extends AppCompatActivity
             public void onClick(View v) {
                 drawT = true;
                 drawR = false;
+                contSelected = false;
+                brSelected = false;
                 final AlertDialog.Builder alert = new AlertDialog.Builder(PhEDIT.this);
 
                 final EditText edittext = new EditText(PhEDIT.this);
@@ -207,8 +215,42 @@ public class PhEDIT extends AppCompatActivity
             public void onClick(View v) {
                 drawR = true;
                 drawT = false;
+                contSelected = false;
+                brSelected = false;
             }
         });
+
+        scrollMenu13 = (ImageView) findViewById(R.id.scrollMenu13);
+        scrollMenu13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawR = false;
+                drawT = false;
+                contSelected = true;
+                brSelected = false;
+                bitmapProcess.setnVal(150);
+                Bitmap bitmap = bitmapProcess.getScaled();
+                bitmap = bitmapProcess.doContrast(bitmap);
+                image.setImageBitmap(bitmap);
+            }
+        });
+
+        scrollMenu14 = (ImageView) findViewById(R.id.scrollMenu14);
+        scrollMenu14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawR = false;
+                drawT = false;
+                contSelected = false;
+                brSelected = true;
+                sizeSeekBar.setProgress(50);
+                bitmapProcess.setnVal(1);
+                Bitmap bitmap = bitmapProcess.getScaled();
+                bitmap = bitmapProcess.doBrightness(bitmap);
+                image.setImageBitmap(bitmap);
+            }
+        });
+
         image.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -235,8 +277,77 @@ public class PhEDIT extends AppCompatActivity
         });
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sizeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                int seekProgress = seekBar.getProgress();
+                if(drawT || drawT){
+                Toast.makeText(getApplicationContext(),"Size changed to : "+seekProgress+"px.",Toast.LENGTH_SHORT).show();
+                if(seekProgress < 5){
+                    seekProgress = 5;
+                }
+                bitmapProcess.setnSize(seekProgress);
+                } else if (contSelected){
+                    if(seekProgress < 33){
+                        seekProgress = 50;
+                    } else if(seekProgress >= 33 && seekProgress < 66){
+                        seekProgress = 100;
+                    } else if(seekProgress >= 66){
+                        seekProgress = 200;
+                    }
+                    bitmapProcess.setnVal(seekProgress);
+                    Bitmap bitmap = bitmapProcess.getScaled();
+                    bitmap = bitmapProcess.doContrast(bitmap);
+                    image.setImageBitmap(bitmap);
+                } else if(brSelected){
+                    if(seekProgress < 50){
+                        seekProgress = seekProgress - 50;
+                    }
+                    bitmapProcess.setnVal(seekProgress);
+                    Bitmap bitmap = bitmapProcess.getScaled();
+                    bitmap = bitmapProcess.doBrightness(bitmap);
+                    image.setImageBitmap(bitmap);
+                }
+            }
+        });
+
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.ph_edit, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.saveFilter) {
+            if (bitmapProcess.getEdited() == null){
+                Log.e("SAVING THE IMAGE","SOMETHING WENT WRONG...");
+            } else {
+                bitmapProcess.setScaled(bitmapProcess.getEdited());
+                image.setImageBitmap(bitmapProcess.getScaled());
+                Toast.makeText(getBaseContext(),"Filter added to the photo.",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     public void loadImagefromGallery(View view) {
 
@@ -396,7 +507,7 @@ class SetIcons extends AsyncTask<Bitmap, Void, Void> {
     Activity activityPhEdit;
     Bitmap bitmap;
     BitmapProcess bitmapProcessForThread;
-    ImageView menu1,menu2,menu3,menu4,menu5,menu6,menu7,menu8,menu9,menu10,menu11,menu12;
+    ImageView menu1,menu2,menu3,menu4,menu5,menu6,menu7,menu8,menu9,menu10,menu11,menu12,menu13,menu14;
 
 
     public SetIcons(Activity activityPhEdit) {
@@ -413,6 +524,8 @@ class SetIcons extends AsyncTask<Bitmap, Void, Void> {
         menu10 = (ImageView) activityPhEdit.findViewById(R.id.scrollMenu10);
         menu11 = (ImageView) activityPhEdit.findViewById(R.id.scrollMenu11);
         menu12 = (ImageView) activityPhEdit.findViewById(R.id.scrollMenu12);
+        menu13 = (ImageView) activityPhEdit.findViewById(R.id.scrollMenu13);
+        menu14 = (ImageView) activityPhEdit.findViewById(R.id.scrollMenu14);
     }
 
     @Override
@@ -442,8 +555,14 @@ class SetIcons extends AsyncTask<Bitmap, Void, Void> {
             menu8.setImageBitmap(bitmapProcessForThread.doColorFilter(bitmap,0.5,0.5,0.9));
             menu9.setImageBitmap(bitmapProcessForThread.doGamma(bitmap, 0.7, 0.6, 0.5));
             menu10.setImageBitmap(bitmapProcessForThread.decreaseColorDepth(bitmap,64));
+            bitmapProcessForThread.setnSize(150);
             menu11.setImageBitmap(bitmapProcessForThread.drawT(bitmap,(bitmap.getWidth()/2)-45,(bitmap.getHeight()/2)+45,"A",150));
+            bitmapProcessForThread.setnSize(50);
             menu12.setImageBitmap(bitmapProcessForThread.drawRectang(bitmap,(bitmap.getWidth()/2),(bitmap.getHeight()/2),150));
+            bitmapProcessForThread.setnVal(50);
+            menu13.setImageBitmap(bitmapProcessForThread.doContrast(bitmap));
+            menu14.setImageBitmap(bitmapProcessForThread.doBrightness(bitmap));
+
         }
         activityPhEdit.removeDialog(PhEDIT.PLEASE_WAIT_DIALOG);
         //else Toast.makeText(activityPhEdit,"Something went wrong.",Toast.LENGTH_SHORT).show();
