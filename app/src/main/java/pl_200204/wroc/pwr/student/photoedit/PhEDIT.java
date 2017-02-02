@@ -293,7 +293,7 @@ public class PhEDIT extends AppCompatActivity
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 int seekProgress = seekBar.getProgress();
-                if(drawT || drawT){
+                if(drawT || drawR){
                 Toast.makeText(getApplicationContext(),"Size changed to : "+seekProgress+"px.",Toast.LENGTH_SHORT).show();
                 if(seekProgress < 5){
                     seekProgress = 5;
